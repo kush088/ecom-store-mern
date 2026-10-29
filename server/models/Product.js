@@ -3,26 +3,50 @@ import mongoose from 'mongoose';
 import { slugify } from './Category.js';
 
 export const MATERIALS = [
-  'Gold',
-  'Diamond',
-  'Silver',
-  'Platinum',
-  'Rose Gold',
-  'White Gold',
-  'Brass',
-  'Alloy',
-  'Kundan',
-  'Polki',
-  'Pearl',
+  'Cotton',
+  'Organic Cotton',
+  'Polyester',
+  'Linen',
+  'Denim',
+  'Rayon',
+  'Viscose',
+  'Silk',
+  'Satin',
+  'Chiffon',
+  'Georgette',
+  'Wool',
+  'Wool Blend',
+  'Nylon',
+  'Spandex',
+  'Acrylic',
+  'Leather',
+  'Faux Leather',
+  'Velvet',
+  'Lace',
+  'Crepe',
   'Other',
 ];
 
-export const PURITIES = [
-  '14K',
-  '18K',
-  '22K',
-  '24K',
-  '925 Sterling',
+export const GENDERS = [
+  'Women',
+  'Men',
+  
+];
+
+export const AGE_GROUPS = [
+  'Adult',
+  
+];
+
+export const CLOTHING_SIZES = [
+  'XS',
+  'S',
+  'M',
+  'L',
+  'XL',
+  'XXL',
+  'XXXL',
+  'Free Size',
 ];
 
 const productSchema = new mongoose.Schema(
@@ -111,47 +135,70 @@ const productSchema = new mongoose.Schema(
       },
     },
 
-    // Jewellery-specific attributes
+    // Clothing-specific attributes
     material: {
       type: String,
       enum: MATERIALS,
     },
 
-    purity: {
+    style: {
       type: String,
-      enum: PURITIES,
+      trim: true,
     },
 
-    weightGrams: {
-      type: Number,
-      min: 0,
-    },
-
-    diamond: {
-      carat: Number,
-      clarity: String,
-      color: String,
-      cut: String,
-    },
-
-    gemstone: String,
-    style: String,
-    occasion: [String],
+    occasion: [
+      {
+        type: String,
+        trim: true,
+      },
+    ],
 
     gender: {
       type: String,
-      enum: ['Women', 'Men', 'Unisex', 'Kids'],
+      enum: GENDERS,
       default: 'Women',
     },
 
     ageGroup: {
       type: String,
-      enum: ['Adult', 'Kids', 'Teen'],
+      enum: AGE_GROUPS,
       default: 'Adult',
     },
 
-    sizes: [String],
+    sizes: [
+      {
+        type: String,
+        trim: true,
+      },
+    ],
 
+    // Clothing color options
+    colors: [
+      {
+        type: String,
+        trim: true,
+      },
+    ],
+
+    // Optional fit information
+    fit: {
+      type: String,
+      trim: true,
+    },
+
+    // Optional sleeve type, useful for tops and shirts
+    sleeveType: {
+      type: String,
+      trim: true,
+    },
+
+    // Optional neckline information
+    neckline: {
+      type: String,
+      trim: true,
+    },
+
+    // Product stock
     stock: {
       type: Number,
       default: 0,
@@ -160,7 +207,8 @@ const productSchema = new mongoose.Schema(
 
     deliveryInfo: {
       type: String,
-      default: 'Delivered in 5-7 business days. Insured shipping.',
+      default: 'Delivered in 5-7 business days.',
+      trim: true,
     },
 
     isFeatured: {
@@ -213,7 +261,6 @@ productSchema.index({
   name: 'text',
   description: 'text',
   style: 'text',
-  gemstone: 'text',
   material: 'text',
 });
 

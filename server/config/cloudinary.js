@@ -1,4 +1,3 @@
-
 import { v2 as cloudinary } from 'cloudinary';
 
 cloudinary.config({
@@ -8,7 +7,7 @@ cloudinary.config({
 });
 
 // Upload images to Cloudinary
-export const uploadBuffer = (buffer, folder = 'jewellery') =>
+export const uploadBuffer = (buffer, folder = 'clothing') =>
   new Promise((resolve, reject) => {
     const stream = cloudinary.uploader.upload_stream(
       {
@@ -35,7 +34,7 @@ export const uploadBuffer = (buffer, folder = 'jewellery') =>
 // Upload product videos to Cloudinary
 export const uploadVideoBuffer = (
   buffer,
-  folder = 'jewellery/videos'
+  folder = 'clothing/videos'
 ) =>
   new Promise((resolve, reject) => {
     const stream = cloudinary.uploader.upload_stream(

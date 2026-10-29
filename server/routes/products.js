@@ -17,6 +17,9 @@ const csv = (v) =>
         .filter(Boolean)
     : [];
 
+const escapeRegex = (value) =>
+  String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
 // Build a MongoDB filter from query parameters.
 const buildFilter = async (q) => {
   const f = { isActive: true };
@@ -46,37 +49,66 @@ const buildFilter = async (q) => {
 
   if (q.minPrice || q.maxPrice) {
     f.price = {};
+
     if (q.minPrice) f.price.$gte = Number(q.minPrice);
     if (q.maxPrice) f.price.$lte = Number(q.maxPrice);
   }
 
-  if (q.material) f.material = { $in: csv(q.material) };
-  if (q.purity) f.purity = { $in: csv(q.purity) };
-
-  if (q.gemstone) {
-    f.gemstone = {
-      $in: csv(q.gemstone).map((g) => new RegExp(`^${g}$`, 'i')),
-    };
+  // Clothing filters
+  if (q.material) {
+    f.material = { $in: csv(q.material) };
   }
 
   if (q.style) {
     f.style = {
-      $in: csv(q.style).map((g) => new RegExp(`^${g}$`, 'i')),
+      $in: csv(q.style).map((value) => new RegExp(`^${escapeRegex(value)}$`, 'i')),
     };
   }
 
-  if (q.occasion) f.occasion = { $in: csv(q.occasion) };
-  if (q.gender) f.gender = { $in: csv(q.gender) };
-  if (q.ageGroup) f.ageGroup = { $in: csv(q.ageGroup) };
-  if (q.size) f.sizes = { $in: csv(q.size) };
-
-  if (q.minCarat || q.maxCarat) {
-    f['diamond.carat'] = {};
-    if (q.minCarat) f['diamond.carat'].$gte = Number(q.minCarat);
-    if (q.maxCarat) f['diamond.carat'].$lte = Number(q.maxCarat);
+  if (q.gender) {
+    f.gender = { $in: csv(q.gender) };
   }
 
-  if (q.clarity) f['diamond.clarity'] = { $in: csv(q.clarity) };
+  if (q.ageGroup) {
+    f.ageGroup = { $in: csv(q.ageGroup) };
+  }
+
+  if (q.size) {
+    f.sizes = { $in: csv(q.size) };
+  }
+
+  if (q.color) {
+    f.colors = {
+      $in: csv(q.color).map((value) => new RegExp(`^${escapeRegex(value)}$`, 'i')),
+    };
+  }
+
+  if (q.fit) {
+    f.fit = {
+      $in: csv(q.fit).map((value) => new RegExp(`^${escapeRegex(value)}$`, 'i')),
+    };
+  }
+
+  if (q.sleeveType) {
+    f.sleeveType = {
+      $in: csv(q.sleeveType).map(
+        (value) => new RegExp(`^${escapeRegex(value)}$`, 'i')
+      ),
+    };
+  }
+
+  if (q.neckline) {
+    f.neckline = {
+      $in: csv(q.neckline).map(
+        (value) => new RegExp(`^${escapeRegex(value)}$`, 'i')
+      ),
+    };
+  }
+
+  if (q.occasion) {
+    f.occasion = { $in: csv(q.occasion) };
+  }
+
   if (q.stock === 'in') f.stock = { $gt: 0 };
   if (q.stock === 'out') f.stock = 0;
 
@@ -90,10 +122,7 @@ const buildFilter = async (q) => {
   }
 
   if (q.search) {
-    const rx = new RegExp(
-      String(q.search).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'),
-      'i'
-    );
+    const rx = new RegExp(escapeRegex(q.search), 'i');
 
     const matchingCats = await Category.find({ name: rx }).distinct('_id');
 
@@ -101,7 +130,10 @@ const buildFilter = async (q) => {
       { name: rx },
       { material: rx },
       { style: rx },
-      { gemstone: rx },
+      { colors: rx },
+      { fit: rx },
+      { sleeveType: rx },
+      { neckline: rx },
       { description: rx },
       { occasion: rx },
       { category: { $in: matchingCats } },
@@ -127,7 +159,7 @@ router.get(
   '/',
   asyncHandler(async (req, res) => {
     const page = Math.max(1, Number(req.query.page) || 1);
-    const limit = Math.min(48, Number(req.query.limit) || 12);
+    const limit = Math.min(48, Math.max(1, Number(req.query.limit) || 12));
     const filter = await buildFilter(req.query);
     const sort = SORTS[req.query.sort] || SORTS.featured;
 
@@ -150,7 +182,7 @@ router.get(
   })
 );
 
-// Filter options
+// Clothing filter options
 router.get(
   '/facets',
   asyncHandler(async (req, res) => {
@@ -161,21 +193,27 @@ router.get(
 
     const [
       materials,
-      purities,
-      gemstones,
       styles,
       occasions,
       sizes,
-      clarities,
+      colors,
+      fits,
+      sleeveTypes,
+      necklines,
+      genders,
+      ageGroups,
       price,
     ] = await Promise.all([
       Product.distinct('material', base),
-      Product.distinct('purity', base),
-      Product.distinct('gemstone', base),
       Product.distinct('style', base),
       Product.distinct('occasion', base),
       Product.distinct('sizes', base),
-      Product.distinct('diamond.clarity', base),
+      Product.distinct('colors', base),
+      Product.distinct('fit', base),
+      Product.distinct('sleeveType', base),
+      Product.distinct('neckline', base),
+      Product.distinct('gender', base),
+      Product.distinct('ageGroup', base),
       Product.aggregate([
         { $match: base },
         {
@@ -188,16 +226,20 @@ router.get(
       ]),
     ]);
 
-    const clean = (values) => values.filter(Boolean).sort();
+    const clean = (values) =>
+      values.filter(Boolean).sort((a, b) => String(a).localeCompare(String(b)));
 
     res.json({
       materials: clean(materials),
-      purities: clean(purities),
-      gemstones: clean(gemstones),
       styles: clean(styles),
       occasions: clean(occasions),
       sizes: clean(sizes),
-      clarities: clean(clarities),
+      colors: clean(colors),
+      fits: clean(fits),
+      sleeveTypes: clean(sleeveTypes),
+      necklines: clean(necklines),
+      genders: clean(genders),
+      ageGroups: clean(ageGroups),
       price: price[0]
         ? { min: price[0].min, max: price[0].max }
         : { min: 0, max: 0 },
@@ -346,7 +388,6 @@ router.post(
 
 // ---------- Admin ----------
 
-// Added "video" so the API can accept video metadata.
 const ALLOWED = [
   'name',
   'sku',
@@ -358,15 +399,15 @@ const ALLOWED = [
   'images',
   'video',
   'material',
-  'purity',
-  'weightGrams',
-  'diamond',
-  'gemstone',
   'style',
   'occasion',
   'gender',
   'ageGroup',
   'sizes',
+  'colors',
+  'fit',
+  'sleeveType',
+  'neckline',
   'stock',
   'deliveryInfo',
   'isFeatured',
@@ -384,8 +425,35 @@ const pickAllowed = (body) => {
   }
 
   // Avoid passing empty strings to enum/ObjectId validators.
-  for (const k of ['material', 'purity', 'subcategory', 'sku']) {
+  for (const k of ['material', 'subcategory', 'sku', 'fit', 'sleeveType', 'neckline']) {
     if (data[k] === '') data[k] = undefined;
+  }
+
+  // Convert comma-separated values into arrays when sent as strings.
+  for (const k of ['occasion', 'sizes', 'colors']) {
+    if (typeof data[k] === 'string') {
+      data[k] = csv(data[k]);
+    }
+  }
+
+  // Normalize numeric fields.
+  for (const k of ['price', 'mrp', 'stock']) {
+    if (data[k] !== undefined && data[k] !== '') {
+      data[k] = Number(data[k]);
+    }
+  }
+
+  // Normalize checkbox values if the client sends strings.
+  for (const k of [
+    'isFeatured',
+    'isBestseller',
+    'isNewArrival',
+    'isTrending',
+    'isActive',
+  ]) {
+    if (typeof data[k] === 'string') {
+      data[k] = data[k] === 'true';
+    }
   }
 
   return data;
@@ -402,10 +470,7 @@ router.get(
     const filter = {};
 
     if (req.query.search) {
-      filter.name = new RegExp(
-        String(req.query.search).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'),
-        'i'
-      );
+      filter.name = new RegExp(escapeRegex(req.query.search), 'i');
     }
 
     if (req.query.lowStock) {
@@ -483,10 +548,16 @@ router.delete(
   protect,
   adminOnly,
   asyncHandler(async (req, res) => {
-    await Product.findByIdAndDelete(req.params.id);
+    const product = await Product.findById(req.params.id);
+
+    if (!product) {
+      return res.status(404).json({ message: 'Not found' });
+    }
+
+    await product.deleteOne();
+
     res.json({ message: 'Deleted' });
   })
 );
 
 export default router;
-  

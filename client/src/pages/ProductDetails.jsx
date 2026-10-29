@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import api, { errMsg, inr } from '../api/axios';
@@ -64,9 +63,22 @@ export default function ProductDetails() {
   }
 
   const { product: p, related = [], reviews = [] } = d;
-  const images = p.images || [];
+
+  const images = Array.isArray(p.images) ? p.images : [];
   const videoUrl = p.video?.url || '';
-  const needSize = p.sizes?.length > 0;
+  const needSize = Array.isArray(p.sizes) && p.sizes.length > 0;
+
+  const occasionText = Array.isArray(p.occasion)
+    ? p.occasion.join(', ')
+    : p.occasion;
+
+  const sizeText = Array.isArray(p.sizes)
+    ? p.sizes.join(', ')
+    : '';
+
+  const materialLabel = p.material
+    ? p.material
+    : p.fabric;
 
   const onMove = (e) => {
     const container = zoomRef.current;
@@ -103,6 +115,14 @@ export default function ProductDetails() {
       return toast('Please select a size', 'err');
     }
 
+    if (p.stock <= 0) {
+      return toast('This product is currently out of stock', 'err');
+    }
+
+    if (qty > p.stock) {
+      return toast(`Only ${p.stock} items are available`, 'err');
+    }
+
     add(p, qty, size || undefined);
     toast('Added to cart');
 
@@ -134,23 +154,15 @@ export default function ProductDetails() {
     }
   };
 
+  // Clothing-specific product specifications.
+  // Jewellery-specific fields have been removed.
   const rows = [
-    ['Material', p.material],
-    ['Purity', p.purity],
-    ['Weight', p.weightGrams && `${p.weightGrams} g`],
-    [
-      'Diamond',
-      p.diamond?.carat &&
-        `${p.diamond.carat} ct${
-          p.diamond.clarity ? ` · ${p.diamond.clarity}` : ''
-        }${p.diamond.color ? ` · ${p.diamond.color}` : ''}${
-          p.diamond.cut ? ` · ${p.diamond.cut} cut` : ''
-        }`,
-    ],
-    ['Gemstone', p.gemstone],
+    ['Fabric', materialLabel],
     ['Style', p.style],
-    ['Occasion', p.occasion?.join(', ')],
-    ['For', p.gender],
+    ['Occasion', occasionText],
+    ['Gender', p.gender],
+    ['Age Group', p.ageGroup],
+    ['Available Sizes', sizeText],
     ['SKU', p.sku],
   ].filter(([, value]) => value);
 
@@ -159,6 +171,7 @@ export default function ProductDetails() {
       <div className="crumbs">
         <Link to="/">Home</Link>
         {' / '}
+
         {p.category?.slug ? (
           <Link to={`/category/${p.category.slug}`}>
             {p.category.name}
@@ -221,7 +234,7 @@ export default function ProductDetails() {
                 className="center"
                 style={{ fontSize: 80, paddingTop: '30%' }}
               >
-                💎
+                🛍️
               </div>
             )}
           </div>
@@ -239,7 +252,10 @@ export default function ProductDetails() {
                   onClick={() => selectImage(index)}
                   aria-label={`View product image ${index + 1}`}
                 >
-                  <img src={image.url} alt={`${p.name} ${index + 1}`} />
+                  <img
+                    src={image.url}
+                    alt={`${p.name} ${index + 1}`}
+                  />
                 </button>
               ))}
 
@@ -268,6 +284,7 @@ export default function ProductDetails() {
                   >
                     ▶
                   </span>
+
                   <span style={{ fontSize: 10 }}>VIDEO</span>
                 </button>
               )}
@@ -289,7 +306,8 @@ export default function ProductDetails() {
 
           {p.ratingCount > 0 && (
             <p className="muted">
-              ★ {p.ratingAvg.toFixed(1)} ({p.ratingCount} reviews)
+              ★ {Number(p.ratingAvg || 0).toFixed(1)} (
+              {p.ratingCount} reviews)
             </p>
           )}
 
@@ -308,25 +326,28 @@ export default function ProductDetails() {
           </p>
 
           <p className="muted" style={{ fontSize: '.8rem' }}>
-            Inclusive of making charges. GST (3%) is added at checkout.
+            Check the available sizes before adding this item to your cart.
           </p>
 
           <p style={{ margin: '14px 0' }}>{p.description}</p>
 
-          <table className="specs">
-            <tbody>
-              {rows.map(([key, value]) => (
-                <tr key={key}>
-                  <td>{key}</td>
-                  <td>{value}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          {rows.length > 0 && (
+            <table className="specs">
+              <tbody>
+                {rows.map(([key, value]) => (
+                  <tr key={key}>
+                    <td>{key}</td>
+                    <td>{value}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
 
           {needSize && (
             <>
               <b>Size</b>
+
               <div className="sizes">
                 {p.sizes.map((s) => (
                   <button
@@ -334,6 +355,7 @@ export default function ProductDetails() {
                     key={s}
                     className={s === size ? 'on' : ''}
                     onClick={() => setSize(s)}
+                    aria-pressed={s === size}
                   >
                     {s}
                   </button>
@@ -369,6 +391,7 @@ export default function ProductDetails() {
                 type="button"
                 onClick={() => setQty((q) => Math.max(1, q - 1))}
                 aria-label="Decrease quantity"
+                disabled={qty <= 1}
               >
                 −
               </button>
@@ -381,6 +404,7 @@ export default function ProductDetails() {
                   setQty((q) => Math.min(p.stock || 1, q + 1))
                 }
                 aria-label="Increase quantity"
+                disabled={p.stock <= 0 || qty >= p.stock}
               >
                 +
               </button>
@@ -389,7 +413,7 @@ export default function ProductDetails() {
             <button
               type="button"
               className="btn"
-              disabled={p.stock === 0}
+              disabled={p.stock <= 0}
               onClick={() => addToCart(false)}
             >
               Add to Cart
@@ -398,7 +422,7 @@ export default function ProductDetails() {
             <button
               type="button"
               className="btn dark"
-              disabled={p.stock === 0}
+              disabled={p.stock <= 0}
               onClick={() => addToCart(true)}
             >
               Buy Now
@@ -417,7 +441,7 @@ export default function ProductDetails() {
             className="card"
             style={{ marginTop: 20, fontSize: '.9rem' }}
           >
-            🚚 {p.deliveryInfo}
+            🚚 {p.deliveryInfo || 'Delivery details available at checkout.'}
             <br />
             ↩️ 7-day return policy · 🔒 Secure payments
           </div>
@@ -457,6 +481,7 @@ export default function ProductDetails() {
 
             <div className="field">
               <label>Rating</label>
+
               <select
                 value={rv.rating}
                 onChange={(e) =>
@@ -473,6 +498,7 @@ export default function ProductDetails() {
 
             <div className="field">
               <label>Comment</label>
+
               <textarea
                 rows="3"
                 value={rv.comment}

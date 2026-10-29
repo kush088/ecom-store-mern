@@ -1,0 +1,19 @@
+[{
+  "_id": {
+    "$oid": "6ad4fff3905697f8b99588db"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-10-18T17:20:51.713Z"
+  },
+  "promoVideo": {
+    "publicId": "jewellery/videos/hbfkuvty1zuh8kuxpcux",
+    "url": "https://res.cloudinary.com/vpbmocop/video/upload/v1792347773/jewellery/videos/hbfkuvty1zuh8kuxpcux.mp4"
+  },
+  "promoVideoEnabled": true,
+  "promoVideoSubtitle": "Redefining Elegance with Timeless Designs, Modern Beauty, and Unforgettable Style for Every Occasion.",
+  "promoVideoTitle": "Aurelia",
+  "updatedAt": {
+    "$date": "2026-10-18T17:51:46.572Z"
+  }
+}]

@@ -1,0 +1,92 @@
+[{
+  "_id": {
+    "$oid": "6ad36ed95899facd5a21c753"
+  },
+  "name": "Caps",
+  "parent": null,
+  "order": 2,
+  "isActive": true,
+  "slug": "caps",
+  "createdAt": {
+    "$date": "2026-10-17T12:49:29.675Z"
+  },
+  "updatedAt": {
+    "$date": "2026-10-18T16:36:10.632Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6ad36ed95899facd5a21c7f7"
+  },
+  "name": "T-Shirt",
+  "parent": null,
+  "order": 1,
+  "isActive": true,
+  "slug": "t-shirt",
+  "createdAt": {
+    "$date": "2026-10-17T12:49:29.740Z"
+  },
+  "updatedAt": {
+    "$date": "2026-10-18T16:36:10.632Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6ad4e3156b03e3dbd99bbbba"
+  },
+  "name": "Trendy T-Shirts",
+  "parent": {
+    "$oid": "6ad36ed95899facd5a21c7f7"
+  },
+  "description": "Discover everyday essentials with comfortable fits and timeless styles.",
+  "order": 2,
+  "isActive": true,
+  "slug": "trendy-t-shirts",
+  "createdAt": {
+    "$date": "2026-10-18T15:17:41.439Z"
+  },
+  "updatedAt": {
+    "$date": "2026-10-18T15:17:41.439Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6ad4e3236b03e3dbd99bbbbf"
+  },
+  "name": "Oversized T-Shirts",
+  "parent": {
+    "$oid": "6ad36ed95899facd5a21c7f7"
+  },
+  "description": "Stay effortlessly stylish with relaxed fits and modern streetwear looks.",
+  "order": 3,
+  "isActive": true,
+  "slug": "oversized-t-shirts",
+  "createdAt": {
+    "$date": "2026-10-18T15:17:55.998Z"
+  },
+  "updatedAt": {
+    "$date": "2026-10-18T15:17:55.998Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6ad4eb8a6b03e3dbd99bbf3c"
+  },
+  "name": "Premium Linen Shirt",
+  "parent": null,
+  "description": "Elevate your everyday style with this stylish sage green linen shirt. Featuring a lightweight, breathable fabric and a modern fit, it offers a perfect balance of comfort and sophistication. Ideal for casual outings, summer days, vacations, and smart-casual occasions. Pair it with beige trousers, white pants, or denim for a fresh, effortless look.",
+  "order": 0,
+  "isActive": true,
+  "slug": "premium-linen-shirt",
+  "createdAt": {
+    "$date": "2026-10-18T15:53:46.861Z"
+  },
+  "updatedAt": {
+    "$date": "2026-10-19T02:22:08.097Z"
+  },
+  "__v": 0
+}]

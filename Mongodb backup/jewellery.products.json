@@ -1,0 +1,221 @@
+[{
+  "_id": {
+    "$oid": "6ad36ff337ced17ecd516bd0"
+  },
+  "name": "Cream Manhattan Embroidered Baseball Cap",
+  "description": "Upgrade your everyday style with this cream baseball cap featuring stylish dark-green embroidered graphics. Crafted from cotton twill, it offers a classic curved brim, embroidered ventilation eyelets, and an adjustable back closure for a comfortable fit. Its minimal colour combination and sporty design make it perfect for casual outings, streetwear looks, and everyday adventures.",
+  "category": {
+    "$oid": "6ad36ed95899facd5a21c753"
+  },
+  "price": 599,
+  "mrp": 899,
+  "discountPercent": 33,
+  "images": [
+    {
+      "url": "https://res.cloudinary.com/vpbmocop/image/upload/v1792243622/jewellery/viszhoh594cceyh0s75m.jpg",
+      "publicId": "jewellery/viszhoh594cceyh0s75m",
+      "_id": {
+        "$oid": "6ad36ff337ced17ecd516bd1"
+      }
+    }
+  ],
+  "gemstone": "",
+  "style": "",
+  "occasion": [],
+  "gender": "Men",
+  "ageGroup": "Adult",
+  "sizes": [],
+  "stock": 7,
+  "deliveryInfo": "Delivered in 5-7 business days. Insured shipping.",
+  "isFeatured": true,
+  "isBestseller": false,
+  "isNewArrival": false,
+  "isTrending": false,
+  "isActive": true,
+  "popularity": 27,
+  "ratingAvg": 0,
+  "ratingCount": 0,
+  "slug": "cream-manhattan-embroidered-baseball-cap-i0kjr",
+  "createdAt": {
+    "$date": "2026-10-17T12:54:11.024Z"
+  },
+  "updatedAt": {
+    "$date": "2026-10-20T07:15:21.137Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6ad4e5766b03e3dbd99bbc9c"
+  },
+  "name": "Minimalist Long-Sleeve Crewneck Tee in Classic Black",
+  "description": "A versatile, premium cotton-blend long-sleeve T-shirt featuring a clean crewneck cut and a sleek, tailored silhouette. Designed for effortless everyday styling, it pairs seamlessly with contemporary streetwear bottoms or skirts for a polished, modern editorial look.",
+  "category": {
+    "$oid": "6ad36ed95899facd5a21c7f7"
+  },
+  "subcategory": {
+    "$oid": "6ad4e3156b03e3dbd99bbbba"
+  },
+  "price": 799,
+  "mrp": 1199,
+  "discountPercent": 33,
+  "images": [
+    {
+      "url": "https://res.cloudinary.com/vpbmocop/image/upload/v1792339268/jewellery/gspdt2catvxkn2wlgpid.jpg",
+      "publicId": "jewellery/gspdt2catvxkn2wlgpid",
+      "_id": {
+        "$oid": "6ad4e5766b03e3dbd99bbc9d"
+      }
+    },
+    {
+      "url": "https://res.cloudinary.com/vpbmocop/image/upload/v1792340243/jewellery/nd55bl2hyioqwriek0ef.jpg",
+      "publicId": "jewellery/nd55bl2hyioqwriek0ef",
+      "_id": {
+        "$oid": "6ad4e9436b03e3dbd99bbeb4"
+      }
+    }
+  ],
+  "gemstone": "",
+  "style": "",
+  "occasion": [],
+  "gender": "Women",
+  "ageGroup": "Adult",
+  "sizes": [
+    "S",
+    "L",
+    "XL",
+    "XXL"
+  ],
+  "stock": 5,
+  "deliveryInfo": "Delivered in 5-7 business days. Insured shipping.",
+  "isFeatured": true,
+  "isBestseller": false,
+  "isNewArrival": true,
+  "isTrending": false,
+  "isActive": true,
+  "popularity": 13,
+  "ratingAvg": 0,
+  "ratingCount": 0,
+  "slug": "minimalist-long-sleeve-crewneck-tee-in-classic-black-ultj0",
+  "createdAt": {
+    "$date": "2026-10-18T15:27:50.251Z"
+  },
+  "updatedAt": {
+    "$date": "2026-10-19T02:17:13.371Z"
+  },
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "6ad4ebec6b03e3dbd99bbf51"
+  },
+  "name": "Sage Green Premium Linen Shirt",
+  "description": "Refresh your wardrobe with this elegant green linen shirt, designed for a clean and contemporary look. Its lightweight texture and relaxed feel make it perfect for warm days and effortless styling. Pair it with neutral trousers or classic denim for a versatile outfit that works for brunches, vacations, and casual occasions.",
+  "category": {
+    "$oid": "6ad4eb8a6b03e3dbd99bbf3c"
+  },
+  "price": 1299,
+  "mrp": 1999,
+  "discountPercent": 35,
+  "images": [
+    {
+      "url": "https://res.cloudinary.com/vpbmocop/image/upload/v1792340924/jewellery/hfghx1idpbadtwdimb8g.jpg",
+      "publicId": "jewellery/hfghx1idpbadtwdimb8g",
+      "_id": {
+        "$oid": "6ad4ebec6b03e3dbd99bbf52"
+      }
+    }
+  ],
+  "gemstone": "",
+  "style": "",
+  "occasion": [],
+  "gender": "Women",
+  "ageGroup": "Adult",
+  "sizes": [
+    "S",
+    "L",
+    "XL",
+    "XXL"
+  ],
+  "stock": 10,
+  "deliveryInfo": "Delivered in 5-7 business days. Insured shipping.",
+  "isFeatured": true,
+  "isBestseller": true,
+  "isNewArrival": true,
+  "isTrending": false,
+  "isActive": true,
+  "popularity": 4,
+  "ratingAvg": 0,
+  "ratingCount": 0,
+  "slug": "sage-green-premium-linen-shirt-mr6pe",
+  "createdAt": {
+    "$date": "2026-10-18T15:55:24.287Z"
+  },
+  "updatedAt": {
+    "$date": "2026-10-20T07:14:21.419Z"
+  },
+  "__v": 0,
+  "video": {
+    "publicId": "",
+    "url": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "6ad4f498b64a6bddb345ea4c"
+  },
+  "name": "The Perfect Black T-Shirt for Every Style",
+  "description": "Upgrade your everyday look with a classic black T-shirt. Featuring a versatile design, comfortable fit, and timeless style, it's the perfect choice for casual outings, everyday wear, and effortless fashion.",
+  "category": {
+    "$oid": "6ad36ed95899facd5a21c7f7"
+  },
+  "subcategory": {
+    "$oid": "6ad4e3156b03e3dbd99bbbba"
+  },
+  "price": 799,
+  "mrp": 1099,
+  "discountPercent": 27,
+  "images": [
+    {
+      "url": "https://res.cloudinary.com/vpbmocop/image/upload/v1792343333/jewellery/uy1bk1rekq2ynrtkafik.png",
+      "publicId": "jewellery/uy1bk1rekq2ynrtkafik",
+      "_id": {
+        "$oid": "6ad4f554b64a6bddb345eb0e"
+      }
+    }
+  ],
+  "video": {
+    "url": "https://res.cloudinary.com/vpbmocop/video/upload/v1792343042/jewellery/videos/bej4h0vxodrnhgrsai3z.mp4",
+    "publicId": "jewellery/videos/bej4h0vxodrnhgrsai3z"
+  },
+  "gemstone": "",
+  "style": "",
+  "occasion": [],
+  "gender": "Women",
+  "ageGroup": "Adult",
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL"
+  ],
+  "stock": 10,
+  "deliveryInfo": "Delivered in 5-7 business days. Insured shipping.",
+  "isFeatured": true,
+  "isBestseller": true,
+  "isNewArrival": true,
+  "isTrending": true,
+  "isActive": true,
+  "popularity": 14,
+  "ratingAvg": 0,
+  "ratingCount": 0,
+  "slug": "the-perfect-black-t-shirt-for-every-style-co3nf",
+  "createdAt": {
+    "$date": "2026-10-18T16:32:24.164Z"
+  },
+  "updatedAt": {
+    "$date": "2026-10-22T05:24:17.261Z"
+  },
+  "__v": 1
+}]

@@ -1,0 +1,43 @@
+[{
+  "_id": {
+    "$oid": "6ad36ed95899facd5a21c80a"
+  },
+  "name": "Admin",
+  "email": "admin@jewels.com",
+  "password": "$2a$12$CEz65/XyVQiwqLQumUIGN.DxEgcpuq1WFPTRL9.vqYaO/hfwyWnnu",
+  "role": "admin",
+  "isActive": true,
+  "wishlist": [
+    {
+      "$oid": "6ad4f498b64a6bddb345ea4c"
+    }
+  ],
+  "addresses": [],
+  "createdAt": {
+    "$date": "2026-10-17T12:49:29.749Z"
+  },
+  "updatedAt": {
+    "$date": "2026-10-20T07:19:20.201Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6ad57f74adb19e6194942446"
+  },
+  "name": "kush parekh",
+  "email": "kushparekh01@gmail.com",
+  "phone": "9016480817",
+  "password": "$2a$12$p7GCZk43IVi8ewVPuJDzGeC02igS1/RbWtLhYrpzwibtOXUDUcEzS",
+  "role": "user",
+  "isActive": true,
+  "wishlist": [],
+  "addresses": [],
+  "createdAt": {
+    "$date": "2026-10-19T02:24:52.550Z"
+  },
+  "updatedAt": {
+    "$date": "2026-10-19T02:24:52.550Z"
+  },
+  "__v": 0
+}]

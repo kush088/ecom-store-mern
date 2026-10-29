@@ -655,18 +655,22 @@ textarea {
   border-radius: var(--r);
   overflow: hidden;
   position: relative;
-  transition: 0.25s;
   display: flex;
   flex-direction: column;
+  isolation: isolate;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .pcard:hover {
   box-shadow: var(--shadow);
-  transform: translateY(-3px);
+  transform: translateY(-4px);
 }
 
 .pcard .img {
-  aspect-ratio: 1;
+  position: relative;
+  aspect-ratio: 1 / 1;
   background: #f3eee5;
   overflow: hidden;
   display: grid;
@@ -678,11 +682,51 @@ textarea {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s;
+  transition:
+    transform 0.55s ease,
+    opacity 0.45s ease;
 }
 
-.pcard:hover .img img {
+/* Main product image */
+
+.pcard .img .primary-image {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Alternate product image */
+
+.pcard .img .secondary-image {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.04);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Zoom the main image */
+
+.pcard:hover .img .primary-image {
   transform: scale(1.06);
+}
+
+/* Fade in the alternate image */
+
+.pcard:hover .img .secondary-image {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.pcard .img .image-placeholder {
+  font-size: 2rem;
+  color: var(--muted);
 }
 
 .pcard .body {
@@ -696,6 +740,11 @@ textarea {
 .pcard .name {
   font-weight: 500;
   font-size: 0.95rem;
+  transition: color 0.25s ease;
+}
+
+.pcard:hover .name {
+  color: var(--gold-d);
 }
 
 .pcard .meta {
@@ -724,6 +773,7 @@ textarea {
   position: absolute;
   top: 10px;
   right: 10px;
+  z-index: 5;
   background: #fff;
   border: 0;
   width: 34px;
@@ -732,6 +782,14 @@ textarea {
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
   font-size: 1rem;
+  transition:
+    transform 0.25s ease,
+    color 0.25s ease,
+    background 0.25s ease;
+}
+
+.heart:hover {
+  transform: scale(1.12);
 }
 
 .heart.on {
@@ -742,6 +800,7 @@ textarea {
   position: absolute;
   top: 10px;
   left: 10px;
+  z-index: 5;
   background: var(--gold);
   color: #fff;
   font-size: 0.72rem;
@@ -752,11 +811,32 @@ textarea {
 .oos {
   position: absolute;
   inset: auto 0 0 0;
+  z-index: 4;
   background: rgba(0, 0, 0, 0.65);
   color: #fff;
   text-align: center;
   padding: 5px;
   font-size: 0.8rem;
+}
+
+/* Disable image switching on touch devices */
+
+@media (hover: none) {
+  .pcard:hover {
+    transform: none;
+  }
+
+  .pcard:hover .img .primary-image {
+    transform: none;
+  }
+
+  .pcard:hover .img .secondary-image {
+    opacity: 0;
+  }
+
+  .pcard:hover .name {
+    color: var(--ink);
+  }
 }
 
 /* Shop / Filters */

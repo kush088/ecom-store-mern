@@ -1,0 +1,336 @@
+[{
+  "_id": {
+    "$oid": "6ad57f2badb19e6194942412"
+  },
+  "user": {
+    "$oid": "6ad36ed95899facd5a21c80a"
+  },
+  "items": [
+    {
+      "product": {
+        "$oid": "6ad36ff337ced17ecd516bd0"
+      },
+      "name": "Cream Manhattan Embroidered Baseball Cap",
+      "image": "https://res.cloudinary.com/vpbmocop/image/upload/v1792243622/jewellery/viszhoh594cceyh0s75m.jpg",
+      "price": 599,
+      "qty": 1,
+      "_id": {
+        "$oid": "6ad57f2badb19e6194942413"
+      }
+    }
+  ],
+  "shippingAddress": {
+    "fullName": "kush",
+    "phone": "9016480817",
+    "line1": "c-204 rameshwaram green",
+    "line2": "",
+    "city": "Surat",
+    "state": "Gujarat",
+    "pincode": "394221"
+  },
+  "itemsTotal": 599,
+  "discount": 0,
+  "shippingCharge": 199,
+  "tax": 18,
+  "total": 816,
+  "paymentMethod": "cod",
+  "paymentStatus": "pending",
+  "status": "placed",
+  "stockDeducted": true,
+  "createdAt": {
+    "$date": "2026-10-19T02:23:39.957Z"
+  },
+  "updatedAt": {
+    "$date": "2026-10-19T02:23:39.976Z"
+  },
+  "orderNumber": "JWMVEMRF7ARQC",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6ad57f83adb19e619494246d"
+  },
+  "user": {
+    "$oid": "6ad57f74adb19e6194942446"
+  },
+  "items": [
+    {
+      "product": {
+        "$oid": "6ad36ff337ced17ecd516bd0"
+      },
+      "name": "Cream Manhattan Embroidered Baseball Cap",
+      "image": "https://res.cloudinary.com/vpbmocop/image/upload/v1792243622/jewellery/viszhoh594cceyh0s75m.jpg",
+      "price": 599,
+      "qty": 1,
+      "_id": {
+        "$oid": "6ad57f83adb19e619494246e"
+      }
+    }
+  ],
+  "shippingAddress": {
+    "fullName": "kush parekh",
+    "phone": "9016480817",
+    "line1": "Althan",
+    "line2": "",
+    "city": "Surat",
+    "state": "Gujarat",
+    "pincode": "394221"
+  },
+  "itemsTotal": 599,
+  "discount": 0,
+  "shippingCharge": 199,
+  "tax": 18,
+  "total": 816,
+  "paymentMethod": "razorpay",
+  "paymentStatus": "pending",
+  "status": "placed",
+  "stockDeducted": false,
+  "createdAt": {
+    "$date": "2026-10-19T02:25:07.485Z"
+  },
+  "updatedAt": {
+    "$date": "2026-10-19T02:25:07.485Z"
+  },
+  "orderNumber": "JWMVEMTAQLXUY",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6ad57f8cadb19e6194942476"
+  },
+  "user": {
+    "$oid": "6ad57f74adb19e6194942446"
+  },
+  "items": [
+    {
+      "product": {
+        "$oid": "6ad36ff337ced17ecd516bd0"
+      },
+      "name": "Cream Manhattan Embroidered Baseball Cap",
+      "image": "https://res.cloudinary.com/vpbmocop/image/upload/v1792243622/jewellery/viszhoh594cceyh0s75m.jpg",
+      "price": 599,
+      "qty": 1,
+      "_id": {
+        "$oid": "6ad57f8cadb19e6194942477"
+      }
+    }
+  ],
+  "shippingAddress": {
+    "fullName": "kush parekh",
+    "phone": "9016480817",
+    "line1": "Althan",
+    "line2": "",
+    "city": "Surat",
+    "state": "Gujarat",
+    "pincode": "394221"
+  },
+  "itemsTotal": 599,
+  "discount": 0,
+  "shippingCharge": 199,
+  "tax": 18,
+  "total": 816,
+  "paymentMethod": "razorpay",
+  "paymentStatus": "pending",
+  "status": "placed",
+  "stockDeducted": false,
+  "createdAt": {
+    "$date": "2026-10-19T02:25:16.360Z"
+  },
+  "updatedAt": {
+    "$date": "2026-10-19T02:25:16.360Z"
+  },
+  "orderNumber": "JWMVEMTHL4113",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6ad57f8dadb19e619494247f"
+  },
+  "user": {
+    "$oid": "6ad57f74adb19e6194942446"
+  },
+  "items": [
+    {
+      "product": {
+        "$oid": "6ad36ff337ced17ecd516bd0"
+      },
+      "name": "Cream Manhattan Embroidered Baseball Cap",
+      "image": "https://res.cloudinary.com/vpbmocop/image/upload/v1792243622/jewellery/viszhoh594cceyh0s75m.jpg",
+      "price": 599,
+      "qty": 1,
+      "_id": {
+        "$oid": "6ad57f8dadb19e6194942480"
+      }
+    }
+  ],
+  "shippingAddress": {
+    "fullName": "kush parekh",
+    "phone": "9016480817",
+    "line1": "Althan",
+    "line2": "",
+    "city": "Surat",
+    "state": "Gujarat",
+    "pincode": "394221"
+  },
+  "itemsTotal": 599,
+  "discount": 0,
+  "shippingCharge": 199,
+  "tax": 18,
+  "total": 816,
+  "paymentMethod": "razorpay",
+  "paymentStatus": "pending",
+  "status": "placed",
+  "stockDeducted": false,
+  "createdAt": {
+    "$date": "2026-10-19T02:25:17.117Z"
+  },
+  "updatedAt": {
+    "$date": "2026-10-19T02:25:17.117Z"
+  },
+  "orderNumber": "JWMVEMTI656O7",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6ad57f90adb19e6194942488"
+  },
+  "user": {
+    "$oid": "6ad57f74adb19e6194942446"
+  },
+  "items": [
+    {
+      "product": {
+        "$oid": "6ad36ff337ced17ecd516bd0"
+      },
+      "name": "Cream Manhattan Embroidered Baseball Cap",
+      "image": "https://res.cloudinary.com/vpbmocop/image/upload/v1792243622/jewellery/viszhoh594cceyh0s75m.jpg",
+      "price": 599,
+      "qty": 1,
+      "_id": {
+        "$oid": "6ad57f90adb19e6194942489"
+      }
+    }
+  ],
+  "shippingAddress": {
+    "fullName": "kush parekh",
+    "phone": "9016480817",
+    "line1": "Althan",
+    "line2": "",
+    "city": "Surat",
+    "state": "Gujarat",
+    "pincode": "394221"
+  },
+  "itemsTotal": 599,
+  "discount": 0,
+  "shippingCharge": 199,
+  "tax": 18,
+  "total": 816,
+  "paymentMethod": "cod",
+  "paymentStatus": "paid",
+  "status": "delivered",
+  "stockDeducted": true,
+  "createdAt": {
+    "$date": "2026-10-19T02:25:20.155Z"
+  },
+  "updatedAt": {
+    "$date": "2026-10-19T02:27:00.476Z"
+  },
+  "orderNumber": "JWMVEMTKIK7ZB",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6ad715014d6061cbeb2ad535"
+  },
+  "user": {
+    "$oid": "6ad57f74adb19e6194942446"
+  },
+  "items": [
+    {
+      "product": {
+        "$oid": "6ad36ff337ced17ecd516bd0"
+      },
+      "name": "Cream Manhattan Embroidered Baseball Cap",
+      "image": "https://res.cloudinary.com/vpbmocop/image/upload/v1792243622/jewellery/viszhoh594cceyh0s75m.jpg",
+      "price": 599,
+      "qty": 1,
+      "_id": {
+        "$oid": "6ad715014d6061cbeb2ad536"
+      }
+    }
+  ],
+  "shippingAddress": {
+    "fullName": "kush parekh",
+    "phone": "9016480817",
+    "line1": "Althan",
+    "line2": "",
+    "city": "Surat",
+    "state": "Gujarat",
+    "pincode": "394221"
+  },
+  "itemsTotal": 599,
+  "discount": 0,
+  "shippingCharge": 199,
+  "tax": 18,
+  "total": 816,
+  "paymentMethod": "razorpay",
+  "paymentStatus": "pending",
+  "status": "placed",
+  "stockDeducted": false,
+  "createdAt": {
+    "$date": "2026-10-20T07:15:14.005Z"
+  },
+  "updatedAt": {
+    "$date": "2026-10-20T07:15:14.005Z"
+  },
+  "orderNumber": "JWMVGCM8D1IVV",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6ad715094d6061cbeb2ad53e"
+  },
+  "user": {
+    "$oid": "6ad57f74adb19e6194942446"
+  },
+  "items": [
+    {
+      "product": {
+        "$oid": "6ad36ff337ced17ecd516bd0"
+      },
+      "name": "Cream Manhattan Embroidered Baseball Cap",
+      "image": "https://res.cloudinary.com/vpbmocop/image/upload/v1792243622/jewellery/viszhoh594cceyh0s75m.jpg",
+      "price": 599,
+      "qty": 1,
+      "_id": {
+        "$oid": "6ad715094d6061cbeb2ad53f"
+      }
+    }
+  ],
+  "shippingAddress": {
+    "fullName": "kush parekh",
+    "phone": "9016480817",
+    "line1": "Althan",
+    "line2": "",
+    "city": "Surat",
+    "state": "Gujarat",
+    "pincode": "394221"
+  },
+  "itemsTotal": 599,
+  "discount": 0,
+  "shippingCharge": 199,
+  "tax": 18,
+  "total": 816,
+  "paymentMethod": "cod",
+  "paymentStatus": "pending",
+  "status": "shipped",
+  "stockDeducted": true,
+  "createdAt": {
+    "$date": "2026-10-20T07:15:21.134Z"
+  },
+  "updatedAt": {
+    "$date": "2026-10-20T07:16:14.220Z"
+  },
+  "orderNumber": "JWMVGCMDV2EO9",
+  "__v": 0
+}]

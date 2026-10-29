@@ -1,0 +1,48 @@
+[{
+  "_id": {
+    "$oid": "6ad36eda5899facd5a21c810"
+  },
+  "name": "Priya S.",
+  "city": "Ahmedabad",
+  "text": "The craftsmanship on my bridal set was breathtaking. Every detail was perfect.",
+  "isActive": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-10-17T12:49:30.017Z"
+  },
+  "updatedAt": {
+    "$date": "2026-10-17T12:49:30.017Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6ad36eda5899facd5a21c811"
+  },
+  "name": "Rahul M.",
+  "city": "Mumbai",
+  "text": "Delivery was fast and insured. The diamond ring looks even better in person.",
+  "isActive": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-10-17T12:49:30.018Z"
+  },
+  "updatedAt": {
+    "$date": "2026-10-17T12:49:30.018Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6ad36eda5899facd5a21c812"
+  },
+  "name": "Anjali K.",
+  "city": "Surat",
+  "text": "Beautiful designs, transparent pricing and great support throughout.",
+  "isActive": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-10-17T12:49:30.018Z"
+  },
+  "updatedAt": {
+    "$date": "2026-10-17T12:49:30.018Z"
+  }
+}]

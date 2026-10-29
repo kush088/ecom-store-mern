@@ -1,0 +1,20 @@
+[{
+  "_id": {
+    "$oid": "6ad36eda5899facd5a21c80d"
+  },
+  "code": "WELCOME10",
+  "type": "percent",
+  "value": 10,
+  "minOrder": 5000,
+  "maxDiscount": 5000,
+  "usageLimit": 0,
+  "usedCount": 0,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-10-17T12:49:30.014Z"
+  },
+  "updatedAt": {
+    "$date": "2026-10-17T12:49:30.014Z"
+  },
+  "__v": 0
+}]
