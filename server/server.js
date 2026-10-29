@@ -21,31 +21,27 @@ import { notFound, errorHandler } from './middleware/error.js';
 
 const app = express();
 
-// Trust the hosting platform's proxy for rate limiting.
+// Render proxy configuration.
 app.set('trust proxy', 1);
 
-// Allowed frontend origins.
+// Allowed frontend origins: use plain URLs, not Markdown links.
 const allowedOrigins = [
   'https://ecom-store-mern-zn25.vercel.app',
   'http://localhost:5173',
 ];
 
-// Security middleware.
 app.use(helmet());
 
-// CORS configuration.
-// This must come before your API routes.
+// CORS must run before the API routes and rate limiters.
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests without an Origin header and approved origins.
       if (!origin || allowedOrigins.includes(origin)) {
         return callback(null, true);
       }
 
-      return callback(
-        new Error(`CORS blocked for origin: ${origin}`)
-      );
+      console.error(`CORS blocked origin: ${origin}`);
+      return callback(new Error('Origin not allowed by CORS'));
     },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
@@ -53,10 +49,8 @@ app.use(
   })
 );
 
-// Parse JSON request bodies.
 app.use(express.json({ limit: '1mb' }));
 
-// HTTP request logging.
 app.use(
   morgan(
     process.env.NODE_ENV === 'production' ? 'combined' : 'dev'
@@ -105,13 +99,11 @@ app.use('/api/upload', uploadRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api', miscRoutes);
 
-// Handle unknown routes.
+// Error handlers.
 app.use(notFound);
-
-// Central error handler.
 app.use(errorHandler);
 
-// Start server after connecting to MongoDB.
+// Start the server after connecting to MongoDB.
 const PORT = process.env.PORT || 5000;
 
 if (!process.env.MONGO_URI) {
