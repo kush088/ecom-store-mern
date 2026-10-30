@@ -602,65 +602,141 @@ textarea {
 
 /* Fashion Collection Tiles */
 
+/* dark, immersive burgundy section */
+
 .collection-section {
-  padding-top: 72px;
-  padding-bottom: 80px;
-  background: linear-gradient(180deg, var(--bg), var(--soft) 100%);
+  position: relative;
+  overflow: hidden;
+  padding-top: 96px;
+  padding-bottom: 110px;
+  color: #f7e3d6;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(230, 200, 184, 0.18), transparent 36%),
+    radial-gradient(circle at 95% 100%, rgba(143, 38, 70, 0.7), transparent 45%),
+    linear-gradient(160deg, #2a0d18 0%, #3f1022 50%, #5a1229 100%);
+}
+
+/* big soft ring decoration */
+
+.collection-section::before {
+  content: '';
+  position: absolute;
+  top: -180px;
+  left: -180px;
+  width: 460px;
+  height: 460px;
+  border-radius: 50%;
+  border: 1px solid rgba(230, 200, 184, 0.2);
+  box-shadow:
+    0 0 0 40px rgba(230, 200, 184, 0.04),
+    0 0 0 90px rgba(230, 200, 184, 0.03);
+  pointer-events: none;
+}
+
+.collection-section::after {
+  content: '';
+  position: absolute;
+  right: -140px;
+  bottom: -140px;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  border: 1px solid rgba(230, 200, 184, 0.18);
+  box-shadow: 0 0 0 50px rgba(230, 200, 184, 0.04);
+  pointer-events: none;
+}
+
+.collection-section > .container {
+  position: relative;
+  z-index: 2;
 }
 
 .collection-heading {
-  margin-bottom: 36px;
+  margin-bottom: 60px;
 }
 
 .collection-eyebrow {
-  display: block;
-  text-align: center;
-  margin-bottom: 8px;
-  color: var(--gold-d);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 12px;
+  color: #e6c8b8;
   font-family: Inter, sans-serif;
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 3px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+.collection-eyebrow::before,
+.collection-eyebrow::after {
+  content: '';
+  width: 54px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #e6c8b8);
+}
+
+.collection-eyebrow::after {
+  transform: scaleX(-1);
 }
 
 .collection-heading .section-title {
-  font-size: clamp(2rem, 4vw, 3.1rem);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
   letter-spacing: -0.5px;
+  color: #fff;
+}
+
+.collection-heading .section-title::after {
+  background: linear-gradient(90deg, transparent, #e6c8b8, transparent);
+  width: 90px;
 }
 
 .collection-heading .section-sub {
-  margin-bottom: 0;
+  max-width: 480px;
+  margin: 0 auto;
+  color: rgba(247, 227, 214, 0.75);
 }
 
 .cat-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 22px;
+  gap: 34px;
+  counter-reset: tile;
 }
+
+/* arch-shaped tiles with a champagne ring */
 
 .fashion-tile {
   position: relative;
   display: block;
   min-width: 0;
-  height: 400px;
+  height: 460px;
   padding: 0;
   overflow: hidden;
   isolation: isolate;
-  text-align: left;
+  text-align: center;
   color: #fff;
   background: #33141e;
   border: 0;
-  border-radius: 16px;
-  box-shadow: 0 6px 20px rgba(60, 15, 30, 0.1);
+  border-radius: 230px 230px 22px 22px;
+  box-shadow:
+    0 0 0 6px rgba(230, 200, 184, 0.12),
+    0 0 0 7px rgba(230, 200, 184, 0.5),
+    0 24px 50px rgba(0, 0, 0, 0.45);
+  counter-increment: tile;
   transition:
-    transform 0.35s ease,
-    box-shadow 0.35s ease;
+    transform 0.45s ease,
+    box-shadow 0.45s ease;
 }
 
 .fashion-tile:hover {
-  transform: translateY(-6px);
+  transform: translateY(-10px);
   border-color: transparent;
-  box-shadow: var(--shadow-lg);
+  box-shadow:
+    0 0 0 8px rgba(230, 200, 184, 0.2),
+    0 0 0 9px #e6c8b8,
+    0 34px 70px rgba(0, 0, 0, 0.55);
 }
 
 .fashion-tile-image {
@@ -671,12 +747,14 @@ textarea {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  transition: transform 0.7s ease;
+  transition: transform 0.9s ease;
 }
 
 .fashion-tile:hover .fashion-tile-image {
-  transform: scale(1.08);
+  transform: scale(1.1);
 }
+
+/* wine gradient over the photo */
 
 .fashion-tile::after {
   content: '';
@@ -685,11 +763,31 @@ textarea {
   z-index: -1;
   background: linear-gradient(
     to top,
-    rgba(35, 8, 16, 0.88) 0%,
-    rgba(90, 20, 40, 0.3) 45%,
-    rgba(0, 0, 0, 0.02) 100%
+    rgba(42, 13, 24, 0.95) 0%,
+    rgba(90, 18, 41, 0.45) 45%,
+    rgba(42, 13, 24, 0.05) 100%
   );
   pointer-events: none;
+}
+
+/* inner hairline frame */
+
+.fashion-tile::before {
+  content: '';
+  position: absolute;
+  inset: 14px;
+  z-index: 1;
+  border: 1px solid rgba(230, 200, 184, 0.35);
+  border-radius: 216px 216px 12px 12px;
+  pointer-events: none;
+  transition:
+    border-color 0.4s ease,
+    inset 0.4s ease;
+}
+
+.fashion-tile:hover::before {
+  border-color: rgba(230, 200, 184, 0.9);
+  inset: 18px;
 }
 
 .fashion-tile-placeholder {
@@ -697,7 +795,7 @@ textarea {
   inset: 0;
   display: grid;
   place-items: center;
-  background: linear-gradient(145deg, #4a1a2a, #1a0a10);
+  background: linear-gradient(145deg, #5a1229, #1a0a10);
   color: #f1ddd0;
 }
 
@@ -713,42 +811,385 @@ textarea {
 .fashion-tile-overlay {
   position: absolute;
   inset: auto 0 0;
-  padding: 26px 24px;
+  z-index: 2;
+  padding: 32px 26px 40px;
+}
+
+/* 01 / 02 / 03 numbering above each name */
+
+.fashion-tile-overlay h3::before {
+  content: '0' counter(tile);
+  display: block;
+  margin-bottom: 8px;
+  color: #e6c8b8;
+  font-family: Inter, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 4px;
 }
 
 .fashion-tile-overlay h3 {
   color: #fff;
-  font-family: Inter, sans-serif;
-  font-size: clamp(1.2rem, 2vw, 1.8rem);
-  font-weight: 700;
-  line-height: 1.2;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.6rem, 2.6vw, 2.3rem);
+  font-weight: 600;
+  line-height: 1.15;
   text-transform: uppercase;
-  letter-spacing: 1.2px;
+  letter-spacing: 3px;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.45);
   overflow-wrap: anywhere;
 }
+
+/* pill CTA that fills with champagne on hover */
 
 .fashion-tile-cta {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  margin-top: 12px;
-  padding-bottom: 5px;
-  border-bottom: 1px solid var(--gold-l);
+  margin-top: 18px;
+  padding: 10px 22px;
+  border: 1px solid rgba(230, 200, 184, 0.85);
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
   color: #f7e3d6;
   font-family: Inter, sans-serif;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: 1.5px;
-  transition: gap 0.25s ease;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition:
+    gap 0.25s ease,
+    background 0.3s ease,
+    color 0.3s ease;
 }
 
 .fashion-tile:hover .fashion-tile-cta {
-  gap: 19px;
+  gap: 18px;
+  background: #e6c8b8;
+  border-color: #e6c8b8;
+  color: #4a1124;
 }
 
 .fashion-tile:focus-visible {
-  outline: 3px solid var(--gold);
-  outline-offset: 4px;
+  outline: 3px solid #e6c8b8;
+  outline-offset: 6px;
+}
+
+/* staggered editorial rhythm on desktop */
+
+@media (min-width: 901px) {
+  .cat-grid {
+    padding-bottom: 40px;
+  }
+
+  .cat-grid > :nth-child(3n + 2) {
+    transform: translateY(40px);
+  }
+
+  .cat-grid > :nth-child(3n + 2):hover {
+    transform: translateY(30px);
+  }
+}
+
+/* ---- Shop by Collection: .cat-tile cards (matches Home.jsx markup) ---- */
+
+.cat-tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  min-height: 360px;
+  padding: 52px 24px 44px;
+  overflow: hidden;
+  isolation: isolate;
+  text-align: center;
+  color: #fff;
+  border-radius: 200px 200px 24px 24px;
+  border: 1px solid rgba(230, 200, 184, 0.35);
+  background: linear-gradient(
+    180deg,
+    rgba(230, 200, 184, 0.17),
+    rgba(230, 200, 184, 0.04)
+  );
+  box-shadow:
+    0 24px 50px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(6px);
+  counter-increment: tile;
+  transition:
+    transform 0.45s ease,
+    border-color 0.45s ease,
+    background 0.45s ease,
+    box-shadow 0.45s ease;
+}
+
+/* soft champagne glow behind the medallion */
+
+.cat-tile::before {
+  content: '';
+  position: absolute;
+  top: -70px;
+  left: 50%;
+  width: 280px;
+  height: 280px;
+  z-index: -1;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(230, 200, 184, 0.35), transparent 65%);
+  opacity: 0.7;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+}
+
+.cat-tile:hover {
+  transform: translateY(-10px);
+  border-color: #e6c8b8;
+  background: linear-gradient(
+    180deg,
+    rgba(230, 200, 184, 0.3),
+    rgba(230, 200, 184, 0.08)
+  );
+  box-shadow:
+    0 34px 70px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.cat-tile:hover::before {
+  opacity: 1;
+}
+
+.cat-tile:focus-visible {
+  outline: 3px solid #e6c8b8;
+  outline-offset: 6px;
+}
+
+/* round medallion holding the emoji or category image */
+
+.gem {
+  display: grid;
+  place-items: center;
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  font-size: 2.9rem;
+  line-height: 1;
+  background: radial-gradient(circle at 30% 25%, #fff5ee, #e6c8b8 72%);
+  box-shadow:
+    0 0 0 8px rgba(230, 200, 184, 0.14),
+    0 0 0 9px rgba(230, 200, 184, 0.6),
+    0 16px 32px rgba(0, 0, 0, 0.35);
+  transition: transform 0.45s ease;
+}
+
+.gem img {
+  width: 62px;
+  height: 62px !important;
+  margin: 0 !important;
+  object-fit: contain;
+}
+
+.cat-tile:hover .gem {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.cat-tile h3 {
+  color: #fff;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  font-weight: 600;
+  line-height: 1.15;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.4);
+}
+
+/* 01 / 02 / 03 above the name */
+
+.cat-tile h3::before {
+  content: '0' counter(tile);
+  display: block;
+  margin-bottom: 8px;
+  color: #e6c8b8;
+  font-family: Inter, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-shadow: none;
+}
+
+/* "Shop now" pill that fills on hover */
+
+.cat-tile h3::after {
+  content: 'Shop now →';
+  display: table;
+  margin: 18px auto 0;
+  padding: 9px 22px;
+  border: 1px solid rgba(230, 200, 184, 0.85);
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #f7e3d6;
+  font-family: Inter, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-shadow: none;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.cat-tile:hover h3::after {
+  background: #e6c8b8;
+  border-color: #e6c8b8;
+  color: #4a1124;
+}
+
+@media (max-width: 900px) {
+  .cat-tile {
+    min-height: 320px;
+    border-radius: 150px 150px 20px 20px;
+  }
+}
+
+@media (max-width: 560px) {
+  .cat-tile {
+    gap: 16px;
+    min-height: 250px;
+    padding: 38px 10px 30px;
+    border-radius: 100px 100px 16px 16px;
+  }
+
+  .gem {
+    width: 76px;
+    height: 76px;
+    font-size: 2rem;
+  }
+
+  .gem img {
+    width: 44px;
+    height: 44px !important;
+  }
+
+  .cat-tile h3 {
+    font-size: 1.05rem;
+    letter-spacing: 1.5px;
+  }
+
+  .cat-tile h3::after {
+    margin-top: 12px;
+    padding: 7px 12px;
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+  }
+}
+
+/* ---- Compact collection tiles (same design, smaller size) ---- */
+
+@media (min-width: 561px) {
+  .cat-grid {
+    grid-template-columns: repeat(auto-fit, minmax(210px, 250px));
+    justify-content: center;
+    gap: 26px;
+  }
+
+  .cat-tile {
+    gap: 18px;
+    min-height: 270px;
+    padding: 40px 18px 32px;
+    border-radius: 125px 125px 20px 20px;
+  }
+
+  .gem {
+    width: 84px;
+    height: 84px;
+    font-size: 2.3rem;
+  }
+
+  .gem img {
+    width: 48px;
+    height: 48px !important;
+  }
+
+  .cat-tile h3 {
+    font-size: 1.35rem;
+    letter-spacing: 2.5px;
+  }
+
+  .cat-tile h3::after {
+    margin-top: 14px;
+    padding: 7px 18px;
+    font-size: 0.64rem;
+  }
+}
+
+/* ---- Compact Shop by Collection section (smaller overall) ---- */
+
+@media (min-width: 561px) {
+  .collection-section {
+    padding-top: 56px;
+    padding-bottom: 64px;
+  }
+
+  .collection-section::before {
+    top: -140px;
+    left: -140px;
+    width: 320px;
+    height: 320px;
+  }
+
+  .collection-section::after {
+    right: -110px;
+    bottom: -110px;
+    width: 250px;
+    height: 250px;
+  }
+
+  .collection-heading {
+    margin-bottom: 34px;
+  }
+
+  .collection-eyebrow {
+    gap: 12px;
+    margin-bottom: 8px;
+    font-size: 0.64rem;
+    letter-spacing: 4px;
+  }
+
+  .collection-eyebrow::before,
+  .collection-eyebrow::after {
+    width: 36px;
+  }
+
+  .collection-heading .section-title {
+    padding-bottom: 8px;
+    font-size: clamp(1.9rem, 3.2vw, 2.5rem);
+  }
+
+  .collection-heading .section-title::after {
+    width: 64px;
+    margin-top: 8px;
+  }
+
+  .collection-heading .section-sub {
+    font-size: 0.92rem;
+  }
+
+  .cat-grid {
+    padding-bottom: 0;
+  }
+}
+
+@media (min-width: 901px) {
+  .cat-grid > :nth-child(3n + 2) {
+    transform: translateY(18px);
+  }
+
+  .cat-grid > :nth-child(3n + 2):hover {
+    transform: translateY(8px);
+  }
 }
 
 /* Products */
@@ -1273,22 +1714,207 @@ textarea {
 }
 
 .offer {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   background:
-    radial-gradient(circle at 85% 20%, rgba(232, 180, 150, 0.3), transparent 50%),
-    linear-gradient(120deg, var(--dark), #6d1a36);
-  color: #fff;
-  border-radius: 20px;
-  padding: 48px 40px;
+    radial-gradient(circle at 88% 12%, rgba(230, 200, 184, 0.32), transparent 42%),
+    radial-gradient(circle at 8% 95%, rgba(143, 38, 70, 0.75), transparent 48%),
+    linear-gradient(125deg, #2a0d18 0%, #4a1124 45%, #7a1f3d 100%);
+  color: #f7e3d6;
+  border-radius: 24px;
+  padding: 64px 40px;
   text-align: center;
-  box-shadow: var(--shadow-lg);
+  box-shadow:
+    0 24px 60px rgba(60, 15, 30, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
+/* thin champagne frame inside the card */
+
+.offer::before {
+  content: '';
+  position: absolute;
+  inset: 14px;
+  z-index: -1;
+  border: 1px solid rgba(230, 200, 184, 0.35);
+  border-radius: 16px;
+  pointer-events: none;
+}
+
+/* soft decorative rings in the corner */
+
+.offer::after {
+  content: '';
+  position: absolute;
+  top: -90px;
+  right: -90px;
+  width: 280px;
+  height: 280px;
+  z-index: -1;
+  border-radius: 50%;
+  border: 1px solid rgba(230, 200, 184, 0.28);
+  box-shadow:
+    0 0 0 28px rgba(230, 200, 184, 0.06),
+    0 0 0 60px rgba(230, 200, 184, 0.04);
+  pointer-events: none;
+}
+
+.offer h1,
+.offer h2,
+.offer h3 {
+  color: #fff;
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  line-height: 1.1;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+
+.offer h2 em,
+.offer h3 em,
+.offer h2 span,
+.offer h3 span {
+  font-style: italic;
+  color: #e6c8b8;
+}
+
+.offer p {
+  max-width: 520px;
+  margin: 0 auto 22px;
+  color: rgba(247, 227, 214, 0.85);
+  font-size: 1.02rem;
+}
+
+/* coupon-ticket style code */
+
 .offer code {
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px dashed rgba(255, 255, 255, 0.5);
-  padding: 5px 14px;
-  border-radius: 8px;
-  letter-spacing: 3px;
+  display: inline-block;
+  position: relative;
+  margin: 4px 6px;
+  padding: 10px 26px;
+  background: linear-gradient(135deg, rgba(230, 200, 184, 0.22), rgba(230, 200, 184, 0.08));
+  border: 1.5px dashed rgba(230, 200, 184, 0.75);
+  border-radius: 10px;
+  color: #fff;
+  font-family: Inter, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  backdrop-filter: blur(6px);
+}
+
+.offer .btn {
+  margin-top: 18px;
+  background: linear-gradient(135deg, #f3dccd, #e6c8b8);
+  border-color: #e6c8b8;
+  color: #4a1124;
+  font-weight: 600;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+}
+
+.offer .btn:hover {
+  background: #fff;
+  border-color: #fff;
+  color: #5a1229;
+  transform: translateY(-3px);
+}
+
+/* ---- Welcome offer: extra pieces from Home.jsx markup ---- */
+
+.welcome-offer-section {
+  margin-top: 56px;
+  margin-bottom: 56px;
+}
+
+.offer-content {
+  position: relative;
+  z-index: 2;
+  max-width: 660px;
+  margin: 0 auto;
+}
+
+.offer-decoration {
+  position: absolute;
+  z-index: 1;
+  color: rgba(230, 200, 184, 0.6);
+  font-size: 2.6rem;
+  line-height: 1;
+  pointer-events: none;
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+.offer-decoration-left {
+  top: 20%;
+  left: 7%;
+}
+
+.offer-decoration-right {
+  bottom: 18%;
+  right: 8%;
+  font-size: 3.3rem;
+  animation-delay: 1.6s;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.9) rotate(0deg);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.15) rotate(12deg);
+  }
+}
+
+.offer-label {
+  display: inline-block;
+  color: #e6c8b8;
+  font-family: Inter, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+.offer-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 18px auto 16px;
+}
+
+.offer-divider span:not(.offer-star) {
+  width: 74px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #e6c8b8);
+}
+
+.offer-divider span:last-child {
+  transform: scaleX(-1);
+}
+
+.offer-star {
+  color: #e6c8b8;
+  font-size: 1rem;
+}
+
+@media (max-width: 560px) {
+  .offer-decoration {
+    font-size: 1.8rem;
+  }
+
+  .offer-label {
+    font-size: 0.62rem;
+    letter-spacing: 3px;
+  }
+
+  .offer-divider span:not(.offer-star) {
+    width: 44px;
+  }
 }
 
 .news {
@@ -1754,7 +2380,12 @@ textarea {
   }
 
   .fashion-tile {
-    height: 330px;
+    height: 360px;
+    border-radius: 160px 160px 18px 18px;
+  }
+
+  .fashion-tile::before {
+    border-radius: 148px 148px 10px 10px;
   }
 }
 
@@ -1801,7 +2432,19 @@ textarea {
   }
 
   .offer {
-    padding: 34px 22px;
+    padding: 44px 22px;
+    border-radius: 18px;
+  }
+
+  .offer::before {
+    inset: 10px;
+    border-radius: 12px;
+  }
+
+  .offer code {
+    padding: 8px 18px;
+    font-size: 0.92rem;
+    letter-spacing: 3px;
   }
 
   /* Fashion collections on phones */
@@ -1834,8 +2477,13 @@ textarea {
   }
 
   .fashion-tile {
-    height: 250px;
-    border-radius: 12px;
+    height: 270px;
+    border-radius: 90px 90px 14px 14px;
+  }
+
+  .fashion-tile::before {
+    inset: 8px;
+    border-radius: 82px 82px 8px 8px;
   }
 
   .fashion-tile-overlay {

@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../api/axios';
@@ -326,15 +325,13 @@ export default function Home() {
       )}
 
       {/* Shop by collection */}
-      <section className="section">
+      <section className="section collection-section">
         <div className="container">
-          <h2 className="section-title">
-            Shop by Collection
-          </h2>
-
-          <p className="section-sub">
-            Explore our curated categories
-          </p>
+          <div className="collection-heading">
+            <span className="collection-eyebrow">Curated for you</span>
+            <h2 className="section-title">Shop by Collection</h2>
+            <p className="section-sub">Explore our curated categories</p>
+          </div>
 
           <div className="cat-grid">
             {cats.map((category, index) => (
