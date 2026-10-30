@@ -385,6 +385,13 @@ export default function Home() {
         items={data.bestsellers}
         to="/shop?sort=popularity"
       />
+      {/* Trending products */}
+      <Row
+        title="Trending Now"
+        sub="Discover what's popular"
+        items={data.trending}
+        to="/shop?sort=popularity"
+      />
 
       {/* Welcome offer */}
       <section className="container welcome-offer-section">
@@ -426,13 +433,7 @@ export default function Home() {
         to="/shop?sort=newest"
       />
 
-      {/* Trending products */}
-      <Row
-        title="Trending Now"
-        sub="Discover what's popular"
-        items={data.trending}
-        to="/shop?sort=popularity"
-      />
+      
 
       {/* Customer testimonials */}
       {tests.length > 0 && (
