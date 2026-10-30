@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import api from '../api/axios';
 import { ProductGrid } from '../components/ProductCard';
 
-const ICONS = ['👖', '👕','🧢' ];
+const ICONS = ['👖', '👕', '🧢'];
 
 const DEFAULT_BANNER = {
   title: 'Discover Something You’ll Love',
@@ -390,21 +390,34 @@ export default function Home() {
       />
 
       {/* Welcome offer */}
-      <section className="container">
-        <div className="offer">
-          <h2 style={{ fontSize: '2.2rem' }}>
-            Welcome Offer
-          </h2>
+      <section className="container welcome-offer-section">
+        <div className="offer welcome-offer">
+          <div className="offer-decoration offer-decoration-left">✦</div>
+          <div className="offer-decoration offer-decoration-right">✧</div>
 
-          <p style={{ margin: '8px 0 16px' }}>
-            Get 10% off on your first order above ₹5,000
-            (up to ₹5,000). Use code{' '}
-            <code>WELCOME10</code>
-          </p>
+          <div className="offer-content">
+            <span className="offer-label">
+              A LITTLE SOMETHING SPECIAL
+            </span>
 
-          <Link to="/shop" className="btn">
-            Start Shopping
-          </Link>
+            <div className="offer-divider">
+              <span></span>
+              <span className="offer-star">✦</span>
+              <span></span>
+            </div>
+
+            <h2>Welcome Offer</h2>
+
+            <p>
+              Get 10% off on your first order above ₹5,000
+              (up to ₹5,000). Use code{" "}
+              <code>WELCOME10</code>
+            </p>
+
+            <Link to="/shop" className="btn offer-button">
+              Start Shopping <span aria-hidden="true">→</span>
+            </Link>
+          </div>
         </div>
       </section>
 
