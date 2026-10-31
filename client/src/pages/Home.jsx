@@ -471,7 +471,9 @@ export default function Home() {
                     <span></span>
                   </div>
 
-                  <h2>{discountLabel}</h2>
+                  <h2>{coupon.title || 'Special Offer'}</h2>
+
+<h3>{discountLabel}</h3>
 
                   <p>
                     {coupon.type === 'percent'
