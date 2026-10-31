@@ -206,7 +206,6 @@ function HeroBanner({ banners }) {
       <div className="container">
         <div className="content" key={i}>
           <h1 className="serif">{banner.title}</h1>
-
           <p>{banner.subtitle}</p>
 
           <Link
@@ -242,8 +241,10 @@ export default function Home() {
   const [data, setData] = useState({});
   const [tests, setTests] = useState([]);
   const [homeContent, setHomeContent] = useState(null);
+  const [coupons, setCoupons] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Load homepage content.
   useEffect(() => {
     let cancelled = false;
 
@@ -268,7 +269,6 @@ export default function Home() {
 
       if (bannerResult.status === 'fulfilled') {
         const bannerData = bannerResult.value.data;
-
         setBanners(
           Array.isArray(bannerData) ? bannerData : []
         );
@@ -276,7 +276,6 @@ export default function Home() {
 
       if (categoryResult.status === 'fulfilled') {
         const categoryData = categoryResult.value.data;
-
         setCats(
           Array.isArray(categoryData) ? categoryData : []
         );
@@ -288,7 +287,6 @@ export default function Home() {
 
       if (testsResult.status === 'fulfilled') {
         const testimonialData = testsResult.value.data;
-
         setTests(
           Array.isArray(testimonialData)
             ? testimonialData
@@ -310,6 +308,44 @@ export default function Home() {
     };
   }, []);
 
+  // Refresh homepage coupons when the visitor returns to the tab
+  // and every 30 seconds.
+  useEffect(() => {
+    let cancelled = false;
+
+    const refreshCoupons = async () => {
+      try {
+        const response = await api.get('/coupons/active');
+
+        if (!cancelled) {
+          setCoupons(
+            Array.isArray(response.data) ? response.data : []
+          );
+        }
+      } catch (error) {
+        console.error(
+          'Unable to refresh homepage coupons:',
+          error
+        );
+      }
+    };
+
+    refreshCoupons();
+
+    const intervalId = window.setInterval(
+      refreshCoupons,
+      30000
+    );
+
+    window.addEventListener('focus', refreshCoupons);
+
+    return () => {
+      cancelled = true;
+      window.clearInterval(intervalId);
+      window.removeEventListener('focus', refreshCoupons);
+    };
+  }, []);
+
   const showPromoVideo = Boolean(
     homeContent?.promoVideoEnabled &&
     homeContent?.promoVideo?.url
@@ -328,9 +364,17 @@ export default function Home() {
       <section className="section collection-section">
         <div className="container">
           <div className="collection-heading">
-            <span className="collection-eyebrow">Curated for you</span>
-            <h2 className="section-title">Shop by Collection</h2>
-            <p className="section-sub">Explore our curated categories</p>
+            <span className="collection-eyebrow">
+              Curated for you
+            </span>
+
+            <h2 className="section-title">
+              Shop by Collection
+            </h2>
+
+            <p className="section-sub">
+              Explore our curated categories
+            </p>
           </div>
 
           <div className="cat-grid">
@@ -385,6 +429,7 @@ export default function Home() {
         items={data.bestsellers}
         to="/shop?sort=popularity"
       />
+
       {/* Trending products */}
       <Row
         title="Trending Now"
@@ -393,37 +438,66 @@ export default function Home() {
         to="/shop?sort=popularity"
       />
 
-      {/* Welcome offer */}
-      <section className="container welcome-offer-section">
-        <div className="offer welcome-offer">
-          <div className="offer-decoration offer-decoration-left">✦</div>
-          <div className="offer-decoration offer-decoration-right">✧</div>
+      {/* Active coupons managed from the admin panel */}
+      {coupons.length > 0 && (
+        <section className="container welcome-offer-section">
+          {coupons.map((coupon) => {
+            const discountLabel =
+              coupon.type === 'percent'
+                ? `${coupon.value}% OFF`
+                : `₹${Number(coupon.value).toLocaleString('en-IN')} OFF`;
 
-          <div className="offer-content">
-            <span className="offer-label">
-              A LITTLE SOMETHING SPECIAL
-            </span>
+            return (
+              <div
+                className="offer welcome-offer"
+                key={coupon._id}
+              >
+                <div className="offer-decoration offer-decoration-left">
+                  ✦
+                </div>
 
-            <div className="offer-divider">
-              <span></span>
-              <span className="offer-star">✦</span>
-              <span></span>
-            </div>
+                <div className="offer-decoration offer-decoration-right">
+                  ✧
+                </div>
 
-            <h2>Welcome Offer</h2>
+                <div className="offer-content">
+                  <span className="offer-label">
+                    A LITTLE SOMETHING SPECIAL
+                  </span>
 
-            <p>
-              Get 10% off on your first order above ₹5,000
-              (up to ₹5,000). Use code{" "}
-              <code>WELCOME10</code>
-            </p>
+                  <div className="offer-divider">
+                    <span></span>
+                    <span className="offer-star">✦</span>
+                    <span></span>
+                  </div>
 
-            <Link to="/shop" className="btn offer-button">
-              Start Shopping <span aria-hidden="true">→</span>
-            </Link>
-          </div>
-        </div>
-      </section>
+                  <h2>{discountLabel}</h2>
+
+                  <p>
+                    {coupon.type === 'percent'
+                      ? `Enjoy ${coupon.value}% off`
+                      : `Save ₹${Number(coupon.value).toLocaleString('en-IN')}`}
+                    {Number(coupon.minOrder) > 0 &&
+                      ` on orders above ₹${Number(coupon.minOrder).toLocaleString('en-IN')}`}
+                    {coupon.type === 'percent' &&
+                      Number(coupon.maxDiscount) > 0 &&
+                      ` (up to ₹${Number(coupon.maxDiscount).toLocaleString('en-IN')})`}
+                    . Use code <code>{coupon.code}</code>
+                  </p>
+
+                  <Link
+                    to="/shop"
+                    className="btn offer-button"
+                  >
+                    Start Shopping{' '}
+                    <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
+              </div>
+            );
+          })}
+        </section>
+      )}
 
       {/* New arrivals */}
       <Row
@@ -432,8 +506,6 @@ export default function Home() {
         items={data.newArrivals}
         to="/shop?sort=newest"
       />
-
-      
 
       {/* Customer testimonials */}
       {tests.length > 0 && (
@@ -454,9 +526,7 @@ export default function Home() {
                   key={testimonial._id}
                 >
                   <p>“{testimonial.text}”</p>
-
                   <b>{testimonial.name}</b>{' '}
-
                   <span className="muted">
                     · {testimonial.city}
                   </span>
