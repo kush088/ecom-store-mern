@@ -1,4 +1,3 @@
-
 import { Router } from 'express';
 import { Coupon } from '../models/Misc.js';
 import { protect, adminOnly } from '../middleware/auth.js';
@@ -11,10 +10,7 @@ const router = Router();
 router.post(
   '/validate',
   asyncHandler(async (req, res) => {
-    const {
-      discount,
-      coupon,
-    } = await evaluateCoupon(
+    const { discount, coupon } = await evaluateCoupon(
       req.body.code,
       Number(req.body.itemsTotal) || 0
     );
@@ -27,7 +23,7 @@ router.post(
 );
 
 // Public route: Get active coupons for homepage
-// IMPORTANT: Keep this route before any /:id routes.
+// Keep this route before any /:id routes.
 router.get(
   '/active',
   asyncHandler(async (_req, res) => {
@@ -54,7 +50,7 @@ router.get(
         },
       ],
     })
-      .select('code type value minOrder maxDiscount expiresAt')
+      .select('title code type value minOrder maxDiscount expiresAt')
       .sort({ updatedAt: -1 });
 
     res.set('Cache-Control', 'no-store');
@@ -103,6 +99,7 @@ router.put(
     }
 
     const {
+      title,
       code,
       type,
       value,
@@ -114,6 +111,7 @@ router.put(
     } = req.body;
 
     Object.assign(coupon, {
+      title,
       code,
       type,
       value,

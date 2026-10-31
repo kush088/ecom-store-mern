@@ -1,8 +1,14 @@
 
 import mongoose from 'mongoose';
 
+// Coupon Schema
 const couponSchema = new mongoose.Schema(
   {
+    title: {
+      type: String,
+      default: '',
+      trim: true,
+    },
     code: {
       type: String,
       required: true,
@@ -15,17 +21,34 @@ const couponSchema = new mongoose.Schema(
       enum: ['percent', 'flat'],
       default: 'percent',
     },
-    value: { type: Number, required: true, min: 0 },
-    minOrder: { type: Number, default: 0 },
+    value: {
+      type: Number,
+      required: true,
+      min: 0,
+    },
+    minOrder: {
+      type: Number,
+      default: 0,
+    },
     maxDiscount: Number,
     expiresAt: Date,
-    usageLimit: { type: Number, default: 0 }, // 0 = unlimited
-    usedCount: { type: Number, default: 0 },
-    isActive: { type: Boolean, default: true },
+    usageLimit: {
+      type: Number,
+      default: 0, // 0 = unlimited
+    },
+    usedCount: {
+      type: Number,
+      default: 0,
+    },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
   { timestamps: true }
 );
 
+// Banner Schema
 const bannerSchema = new mongoose.Schema(
   {
     title: String,
@@ -42,6 +65,7 @@ const bannerSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// Homepage Content Schema
 const homeContentSchema = new mongoose.Schema(
   {
     promoVideo: {
@@ -66,6 +90,7 @@ const homeContentSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// Message Schema
 const messageSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
@@ -77,6 +102,7 @@ const messageSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// Subscriber Schema
 const subscriberSchema = new mongoose.Schema(
   {
     email: {
@@ -90,6 +116,7 @@ const subscriberSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// Review Schema
 const reviewSchema = new mongoose.Schema(
   {
     product: {
@@ -104,24 +131,37 @@ const reviewSchema = new mongoose.Schema(
       required: true,
     },
     name: String,
-    rating: { type: Number, min: 1, max: 5, required: true },
+    rating: {
+      type: Number,
+      min: 1,
+      max: 5,
+      required: true,
+    },
     comment: String,
   },
   { timestamps: true }
 );
 
-reviewSchema.index({ product: 1, user: 1 }, { unique: true });
+reviewSchema.index(
+  { product: 1, user: 1 },
+  { unique: true }
+);
 
+// Testimonial Schema
 const testimonialSchema = new mongoose.Schema(
   {
     name: String,
     city: String,
     text: String,
-    isActive: { type: Boolean, default: true },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
   { timestamps: true }
 );
 
+// Model Exports
 export const Coupon = mongoose.model('Coupon', couponSchema);
 export const Banner = mongoose.model('Banner', bannerSchema);
 export const HomeContent = mongoose.model('HomeContent', homeContentSchema);
