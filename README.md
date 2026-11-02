@@ -1,4 +1,4 @@
-# Aurelia – Jewellery E-commerce (MERN)
+# AURELIA – Full-Stack Fashion Store (MERN)
 
 React + Vite storefront and admin panel, Express + MongoDB API, JWT auth, Cloudinary images, Razorpay payments.
 
